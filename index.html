@@ -1747,10 +1747,12 @@
             renderTimelines();
             document.querySelector('.timeline-container').scrollLeft = 0;
         }
-        document.querySelector('.timeline-container').addEventListener('wheel', function(e) {
+       window.addEventListener('wheel', function(e) {
     e.preventDefault();
-    this.scrollLeft += e.deltaY;
+    document.querySelector('.timeline-container').scrollLeft += e.deltaY;
+}, { passive: false });
               // MODIFICA: scroll da verticale a orizzontale //
+        
 }, { passive: false });
 
         function applyZoom() {

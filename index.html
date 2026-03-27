@@ -1748,10 +1748,15 @@
             document.querySelector('.timeline-container').scrollLeft = 0;
         }
         
-              window.addEventListener('wheel', function(e) {
-            e.preventDefault();
-            document.querySelector('.timeline-container').scrollLeft += e.deltaY;
-        }, { passive: false });
+window.addEventListener('wheel', function(e) {
+    const container = document.querySelector('.timeline-container');
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        // scroll orizzontale naturale (trackpad) - lascia fare
+        return;
+    }
+    e.preventDefault();
+    container.scrollLeft += e.deltaY;
+}, { passive: false });
               // MODIFICA: scroll da verticale a orizzontale //
         
 

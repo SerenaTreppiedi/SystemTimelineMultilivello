@@ -1735,7 +1735,7 @@
         }
 
         function zoomOut() {
-            // MODIFICA: Decremento fisso di 0.5 (50%)
+            // MODIFICA: Decremento fisso di 0.5 (50%) //
             currentZoom = Math.max(currentZoom - 0.5, 1.0);
             applyZoom();
             renderTimelines();
@@ -1747,6 +1747,11 @@
             renderTimelines();
             document.querySelector('.timeline-container').scrollLeft = 0;
         }
+        document.querySelector('.timeline-container').addEventListener('wheel', function(e) {
+    e.preventDefault();
+    this.scrollLeft += e.deltaY;
+              // MODIFICA: scroll da verticale a orizzontale //
+}, { passive: false });
 
         function applyZoom() {
             if (!baseWidthPx && timelineContainer) {
